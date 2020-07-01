@@ -27,7 +27,7 @@ def base64decoder(encodedString):
         "Y": 24, "Z": 25,
 
         "0": 52, "1": 53, "2": 54, "3": 55, "4": 56, "5": 57, "6": 58, "7": 59,
-        "8": 60, "9": 61, "+": 62, "/": 63
+        "8": 60, "9": 61, "+": 62, "/": 63, "=": 0
     }
 
     ascDict = {i: chr(i) for i in range(129)}
@@ -46,8 +46,9 @@ def base64decoder(encodedString):
     for i in range(0, len(conct), 8):
         divd.append(conct[i:i + 8])
 
-    # if len(divd[-1]) < 8:
-        # divd.remove(divd[-1])
+    if len(divd[-1]) < 8:
+        divd.remove(divd[-1])
+        
     strList = []
     for i in divd: # For each element in the divided string list
         strList.append(ascDict[bin_to_dec(i)])
